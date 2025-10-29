@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Website</title>
+  <meta name="description" content="Short description of my site" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- nice readable font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="/">MySite</a>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact" class="btn">Contact</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Toggle menu"></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Hi, I’m Gabe.</h1>
+        <p class="lead">I build AI-driven cybersecurity experiences and teaching tools.</p>
+        <a href="#projects" class="btn">See my work</a>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container grid-2">
+        <div>
+          <h2>About</h2>
+          <p>I’m a CS student focusing on RL + cybersecurity education. This site is a simple HTML/CSS build—no frameworks needed.</p>
+        </div>
+        <div class="card">
+          <h3>Highlights</h3>
+          <ul>
+            <li>ACE VR cybersecurity project</li>
+            <li>AI Tutor with RL-guided CoT</li>
+            <li>Python, SwiftUI, Unity</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section alt">
+      <div class="container">
+        <h2>Projects</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>ACE (VR Cyber Lab)</h3>
+            <p>Adaptive difficulty via PPO/AIRL; Unity + Python backend.</p>
+            <a href="#" class="link">Learn more →</a>
+          </article>
+          <article class="card">
+            <h3>AI Tutor</h3>
+            <p>Safe RL for LLM tutoring with RAG and guardrails.</p>
+            <a href="#" class="link">Learn more →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Contact</h2>
+        <p>Reach out via <a href="mailto:you@yourdomain.com">you@yourdomain.com</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> MySite. All rights reserved.</small>
+    </div>
+    <script>
+      // tiny enhancement: current year
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </footer>
+</body>
+</html>
