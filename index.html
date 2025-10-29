@@ -3,24 +3,59 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gabe Edwards - AI & Cybersecurity Researcher</title>
-  <meta name="description" content="Short description of my site" />
+  <title>Gabriel R. Edwards | AI & Cybersecurity Research</title>
+  <meta name="description" content="Personal portfolio of Gabriel R. Edwards — AI & Cybersecurity researcher. Projects in reinforcement learning, intelligent tutoring, and adaptive VR cyber training." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Gabriel R. Edwards | AI & Cybersecurity Research">
+  <meta property="og:description" content="Portfolio showcasing research, projects, and achievements across RL, intelligent tutoring systems, and adaptive VR cybersecurity training.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gabeedwards.com/">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Gabriel R. Edwards | AI & Cybersecurity Research">
+  <meta name="twitter:description" content="RL + Cybersecurity projects, publications, and portfolio.">
+
+  <!-- Fonts & Styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- nice readable font -->
+  <!-- nice readable font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="./styles.css" />
+
+  <!-- Favicon (optional) -->
+  <!-- <link rel="icon" href="/favicon.ico"> -->
+
+  <!-- Structured data (basic Person) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Gabriel R. Edwards",
+    "url":"https://gabeedwards.com",
+    "email":"mailto:gre4bt@umsystem.edu",
+    "jobTitle":"AI & Cybersecurity Researcher",
+    "affiliation":{"@type":"Organization","name":"University of Missouri—Columbia"}
+  }
+  </script>
 </head>
 <body>
   <header class="site-header">
     <div class="container">
       <a class="logo" href="/">Gabriel R. Edwards | AI & Cybersecurity Research</a>
-      <nav class="nav">
+
+      <nav class="nav" id="site-nav" aria-label="Primary">
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
-        <a href="#contact" class="btn">Contact</a>
+        <a href="#contact">Contact</a>
+        <a href="/resume.pdf" class="btn" target="_blank" rel="noopener">Resume</a>
       </nav>
-      <button class="menu-toggle" aria-label="Toggle menu"></button>
+
+      <button class="menu-toggle" aria-label="Toggle menu" aria-controls="site-nav" aria-expanded="false">
+        <!-- you can style this with CSS as a hamburger -->
+        ☰
+      </button>
     </div>
   </header>
 
@@ -28,8 +63,11 @@
     <section class="hero">
       <div class="container">
         <h1>Hi, I'm Gabe.</h1>
-        <p class="lead">I build AI-driven cybersecurity experiences and teaching tools.</p>
-        <a href="#projects" class="btn">See my work</a>
+        <p class="lead">I design AI-driven systems for cybersecurity training — blending reinforcement learning, intelligent tutoring, and adaptive VR to build safer, smarter learning experiences.</p>
+        <div class="actions">
+          <a href="#projects" class="btn">See my work</a>
+          <a href="/resume.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Download Resume</a>
+        </div>
       </div>
     </section>
 
@@ -37,18 +75,23 @@
       <div class="container grid-2">
         <div>
           <h2>About</h2>
-          <p>I'm a computer science researcher focused on the intersection of artificial intelligence and cybersecurity. 
-              My work explores how reinforcement learning, intelligent tutoring systems, 
-              and adaptive VR environments can improve cybersecurity education and defense training. 
-              I develop AI-driven systems that analyze player behavior, adapt difficulty dynamically, and support safe, 
-              explainable learning through RL and neural modeling.</p>
+          <p>
+            I'm a computer science researcher focused on the intersection of <strong>artificial intelligence</strong> and <strong>cybersecurity</strong>.
+            My work explores how <strong>reinforcement learning</strong> (PPO/AIRL), <strong>intelligent tutoring systems</strong>, and
+            <strong>adaptive VR environments</strong> can elevate cybersecurity education and defense training. I build systems that analyze player
+            behavior, <em>adapt difficulty dynamically</em>, and provide safe, explainable feedback rooted in RL and neural modeling.
+          </p>
+          <p>
+            Tools & domains I work with: Python, PyTorch, Unity (VR), SwiftUI, RL pipelines, RAG/guardrails, and secure deployment.
+          </p>
         </div>
+
         <div class="card">
           <h3>Highlights</h3>
           <ul>
-            <li>ACE VR cybersecurity project</li>
-            <li>AI Tutor with RL-guided CoT</li>
-            <li>Python, SwiftUI, Unity</li>
+            <li><strong>ACE VR Cyber Lab</strong> — adaptive difficulty via PPO/AIRL (Unity + Python)</li>
+            <li><strong>AI Tutor</strong> — safe RL for LLM tutoring with retrieval + guardrails</li>
+            <li><strong>Platforms</strong> — Python, SwiftUI, Unity; GitHub + Netlify CI/CD</li>
           </ul>
         </div>
       </div>
@@ -57,17 +100,29 @@
     <section id="projects" class="section alt">
       <div class="container">
         <h2>Projects</h2>
+
         <div class="cards">
           <article class="card">
             <h3>ACE (VR Cyber Lab)</h3>
-            <p>Adaptive difficulty via PPO/AIRL; Unity + Python backend.</p>
-            <a href="#" class="link">Learn more →</a>
+            <p>Adaptive cybersecurity training with PPO/AIRL and a Unity VR front-end. Python backend ingests player telemetry to drive difficulty and hints.</p>
+            <p class="meta">Unity · Python · RL · Telemetry · VR</p>
+            <div class="links">
+              <a href="https://github.com/yourusername/ace-vr" class="link" target="_blank" rel="noopener">GitHub →</a>
+              <a href="#" class="link">Project page →</a>
+            </div>
           </article>
+
           <article class="card">
-            <h3>AI Tutor</h3>
-            <p>Safe RL for LLM tutoring with RAG and guardrails.</p>
-            <a href="#" class="link">Learn more →</a>
+            <h3>AI Tutor for Cybersecurity</h3>
+            <p>LLM tutoring with RL-guided CoT, retrieval-augmented responses, and safety guardrails for secure, citation-first assistance.</p>
+            <p class="meta">Python · RAG · RL · Safety</p>
+            <div class="links">
+              <a href="https://github.com/yourusername/ai-tutor" class="link" target="_blank" rel="noopener">GitHub →</a>
+              <a href="#" class="link">Project page →</a>
+            </div>
           </article>
+
+          <!-- Add more project cards as needed -->
         </div>
       </div>
     </section>
@@ -75,19 +130,44 @@
     <section id="contact" class="section">
       <div class="container">
         <h2>Contact</h2>
-        <p>Reach out via <a href="mailto:gre4bt@umsystem.edu">gre4bt@umsystem.edu</a>.</p>
+        <p>Reach out via <a href="mailto:gre4bt@umsystem.edu">gre4bt@umsystem.edu</a> or connect on
+          <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noopener">LinkedIn</a>.
+        </p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <small>© <span id="year"></span> Gabriel Edwards. All rights reserved.</small>
+      <small>© <span id="year"></span> Gabriel R. Edwards. All rights reserved.</small>
     </div>
-    <script>
-      // tiny enhancement: current year
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
   </footer>
+
+  <script>
+    // current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // accessible mobile menu toggle
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('site-nav');
+
+    toggle?.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true' || false;
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      nav.classList.toggle('open'); // style .nav.open in CSS (e.g., display:block on mobile)
+    });
+
+    // smooth scroll (optional)
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
