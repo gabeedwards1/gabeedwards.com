@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ACE (Adaptive Content Engine) | Gabriel R. Edwards</title>
+  <meta name="description" content="ACE — a reinforcement learning driven VR training system that adapts cybersecurity content using PPO/AIRL. Project page with interactive demos." />
+
+  <link rel="stylesheet" href="/styles.css" />
+  <!-- Optional: AOS for small scroll reveals (safe to remove if not used elsewhere) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="/">Gabriel R. Edwards | AI & Cybersecurity Research</a>
+      <nav class="nav" id="site-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/#about">About</a>
+        <a href="/#projects">Projects</a>
+        <a href="/resume.html">Resume</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-controls="site-nav" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" style="position:relative;">
+      <div class="container" style="text-align:center;">
+        <h1>ACE — Adaptive Content Engine</h1>
+        <p class="lead">
+          Reinforcement learning driven VR training for cybersecurity. ACE uses <strong>PPO</strong> and
+          <strong>AIRL</strong> to adjust challenge difficulty in real time based on learner performance.
+        </p>
+        <div class="actions">
+          <a href="#architecture" class="btn">See architecture</a>
+          <a href="#demo" class="btn btn-secondary">Interactive demo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HIGHLIGHTS -->
+    <section class="section">
+      <div class="container grid-2">
+        <div class="card" data-aos="fade-up">
+          <h3>What ACE Does</h3>
+          <ul>
+            <li>Analyzes telemetry (time, mistakes, hints, action sequences).</li>
+            <li>Estimates reward via AIRL; adjusts difficulty with PPO.</li>
+            <li>Delivers adaptive hints and pacing inside a Unity VR lab.</li>
+          </ul>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <h3>Why It Matters</h3>
+          <ul>
+            <li>Boosts engagement and skill transfer for cyber defense tasks.</li>
+            <li>Personalizes lab flow without manual scripting.</li>
+            <li>Supports safe, explainable training through logged decisions.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE FLOW -->
+    <section id="architecture" class="section alt">
+      <div class="container">
+        <h2>Architecture</h2>
+        <div class="card" style="overflow:auto;">
+          <!-- Responsive SVG flow diagram with hover tooltips -->
+          <div style="min-height: 280px;">
+            <svg viewBox="0 0 1000 320" width="100%" height="320" role="img" aria-label="ACE architecture flow">
+              <defs>
+                <linearGradient id="nodeGrad" x1="0" x2="1">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.06)"></stop>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0.12)"></stop>
+                </linearGradient>
+                <filter id="softGlow">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <!-- nodes -->
+              <g class="node" data-tip="Unity VR environment emits state, actions, and events as telemetry.">
+                <rect x="40" y="40" width="220" height="80" rx="14" fill="url(#nodeGrad)" stroke="rgba(255,255,255,0.18)"/>
+                <text x="150" y="87" text-anchor="middle" fill="#e8ecff" font-size="16">VR Front-End (Unity)</text>
+              </g>
+
+              <g class="node" data-tip="Session features: time, mistakes, unnecessary actions, hints, completion.">
+                <rect x="300" y="40" width="220" height="80" rx="14" fill="url(#nodeGrad)" stroke="rgba(255,255,255,0.18)"/>
+                <text x="410" y="87" text-anchor="middle" fill="#e8ecff" font-size="16">Telemetry / Features</text>
+              </g>
+
+              <g class="node" data-tip="AIRL infers reward from behavior and state-action distributions.">
+                <rect x="560" y="40" width="180" height="80" rx="14" fill="url(#nodeGrad)" stroke="rgba(255,255,255,0.18)"/>
+                <text x="650" y="72" text-anchor="middle" fill="#e8ecff" font-size="16">AIRL</text>
+                <text x="650" y="94" text-anchor="middle" fill="#b9c0d9" font-size="12">Reward Estimation</text>
+              </g>
+
+              <g class="node" data-tip="PPO policy selects next difficulty level / hint strategy.">
+                <rect x="780" y="40" width="180" height="80" rx="14" fill="url(#nodeGrad)" stroke="rgba(255,255,255,0.18)"/>
+                <text x="870" y="72" text-anchor="middle" fill="#e8ecff" font-size="16">PPO</text>
+                <text x="870" y="94" text-anchor="middle" fill="#b9c0d9" font-size="12">Difficulty Policy</text>
+              </g>
+
+              <!-- arrows top row -->
+              <g stroke="#7aa2ff" stroke-width="2" filter="url(#softGlow)">
+                <line x1="260" y1="80" x2="300" y2="80"/>
+                <polygon points="300,80 290,74 290,86" fill="#7aa2ff"/>
+                <line x1="520" y1="80" x2="560" y2="80"/>
+                <polygon points="560,80 550,74 550,86" fill="#7aa2ff"/>
+                <line x1="740" y1="80" x2="780" y2="80"/>
+                <polygon points="780,80 770,74 770,86" fill="#7aa2ff"/>
+              </g>
+
+              <!-- feedback loop -->
+              <g class="node" data-tip="Adaptive difficulty and hints fed back to VR session.">
+                <rect x="560" y="200" width="400" height="80" rx="14" fill="url(#nodeGrad)" stroke="rgba(255,255,255,0.18)"/>
+                <text x="760" y="246" text-anchor="middle" fill="#e8ecff" font-size="16">Adaptive Hints & Difficulty</text>
+              </g>
+
+              <g stroke="#7aa2ff" stroke-width="2" filter="url(#softGlow)">
+                <!-- down arrows -->
+                <line x1="870" y1="120" x2="870" y2="200"/>
+                <polygon points="870,200 864,190 876,190" fill="#7aa2ff"/>
+                <!-- loop back to VR -->
+                <line x1="560" y1="240" x2="260" y2="240"/>
+                <polygon points="260,240 270,234 270,246" fill="#7aa2ff"/>
+                <line x1="260" y1="240" x2="260" y2="120"/>
+                <polygon points="260,120 254,130 266,130" fill="#7aa2ff"/>
+              </g>
+            </svg>
+            <div id="nodeInfo" class="node-info" aria-live="polite">
+                Hover a node to see what it does.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE: REWARD CHART + MINI GRIDWORLD -->
+    <section id="demo" class="section">
+      <div class="container">
+        <h2>Interactive Demos</h2>
+
+        <div class="grid-2">
+          <!-- Reward Chart -->
+          <div class="card" data-aos="fade-up">
+            <h3>Learning Curve (Simulated)</h3>
+            <p class="meta">Average episodic reward over training epochs (illustrative).</p>
+            <canvas id="rewardChart" height="200" aria-label="Reward chart" role="img"></canvas>
+            <div class="actions" style="margin-top:8px;">
+              <button class="btn btn-secondary" id="chartReset">Reset</button>
+              <button class="btn" id="chartTick">Tick +1</button>
+            </div>
+          </div>
+
+          <!-- Mini Gridworld -->
+          <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <h3>Gridworld Agent (Toy)</h3>
+            <p class="meta">A tiny agent moves toward a goal; speed increases when it “learns”.</p>
+            <canvas id="gridCanvas" width="360" height="360" style="border-radius:12px; background:#0b0f22; display:block; margin:0 auto;"></canvas>
+            <div class="actions" style="margin-top:8px; justify-content:center;">
+              <button class="btn" id="simStart">Start</button>
+              <button class="btn btn-secondary" id="simPause">Pause</button>
+              <button class="btn btn-secondary" id="simReset">Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="card" style="text-align:center;">
+          <h3>Interested in the research?</h3>
+          <p class="meta">This work is part of an active research effort. A public summary/paper link will be added upon release.</p>
+          <a href="mailto:gre4bt@umsystem.edu" class="btn">Contact me</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> Gabriel R. Edwards. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <!-- libs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // mobile menu
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('site-nav');
+    toggle?.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true' || false;
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      nav.classList.toggle('open');
+    });
+
+    // AOS
+    AOS?.init && AOS.init({ once: true, duration: 600 });
+
+    // ---------- Reward Chart (simulated) ----------
+    const ctx = document.getElementById('rewardChart');
+    const labels = Array.from({length: 12}, (_,i) => `Epoch ${i+1}`);
+    const base = [-60,-20,10,30,55,85,120,150,175,190,205,220]; // nice S-curve
+    const chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Avg Reward',
+          data: base.slice(0, 6), // start with first 6 points
+          borderWidth: 2,
+          borderColor: '#7aa2ff',
+          pointRadius: 2,
+          fill: false,
+          tension: 0.25
+        }]
+      },
+      options: {
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: '#b9c0d9' } },
+          x: { grid: { display: false }, ticks: { color: '#b9c0d9' } }
+        }
+      }
+    });
+
+    document.getElementById('chartTick').addEventListener('click', () => {
+      const len = chart.data.datasets[0].data.length;
+      if (len < base.length) {
+        chart.data.datasets[0].data.push(base[len]);
+        chart.update();
+      }
+    });
+
+    document.getElementById('chartReset').addEventListener('click', () => {
+      chart.data.datasets[0].data = base.slice(0, 6);
+      chart.update();
+    });
+
+    // ---------- Gridworld toy sim ----------
+    const canvas = document.getElementById('gridCanvas');
+    const g = canvas.getContext('2d');
+    const N = 6;            // grid size
+    const cell = canvas.width / N;
+    let agent = { x: 0, y: 0 };
+    let goal  = { x: N-1, y: N-1 };
+    let animId = null;
+    let speed = 400;        // ms per step (decreases as it "learns")
+    let steps = 0;
+
+    function draw() {
+      // bg
+      g.clearRect(0,0,canvas.width,canvas.height);
+      // grid lines
+      g.strokeStyle = 'rgba(255,255,255,0.06)';
+      for (let i=0;i<=N;i++) {
+        g.beginPath(); g.moveTo(i*cell,0); g.lineTo(i*cell,canvas.height); g.stroke();
+        g.beginPath(); g.moveTo(0,i*cell); g.lineTo(canvas.width,i*cell); g.stroke();
+      }
+      // goal
+      g.fillStyle = 'rgba(122,162,255,0.25)';
+      g.fillRect(goal.x*cell+4, goal.y*cell+4, cell-8, cell-8);
+      // agent
+      g.fillStyle = '#7aa2ff';
+      g.beginPath();
+      g.arc(agent.x*cell + cell/2, agent.y*cell + cell/2, cell*0.28, 0, Math.PI*2);
+      g.fill();
+    }
+
+    function step() {
+      steps++;
+      // bias moves toward goal (simple heuristic "policy")
+      const dx = Math.sign(goal.x - agent.x);
+      const dy = Math.sign(goal.y - agent.y);
+      if (Math.random() < 0.7) {
+        // pick axis with larger distance
+        if (Math.abs(goal.x - agent.x) >= Math.abs(goal.y - agent.y)) agent.x += dx;
+        else agent.y += dy;
+      } else {
+        // small exploration
+        if (Math.random() < 0.5 && Math.abs(goal.x - agent.x) > 0) agent.x += dx;
+        else if (Math.abs(goal.y - agent.y) > 0) agent.y += dy;
+      }
+
+      // clamp
+      agent.x = Math.max(0, Math.min(N-1, agent.x));
+      agent.y = Math.max(0, Math.min(N-1, agent.y));
+
+      draw();
+
+      // "learn": if close to goal, speed up (lower interval)
+      const dist = Math.abs(goal.x - agent.x) + Math.abs(goal.y - agent.y);
+      if (dist <= 2) speed = 200;
+      if (dist === 0) {
+        // reached goal — reset, slightly harder new goal
+        goal = { x: Math.max(2, Math.floor(Math.random()*(N-1))), y: Math.max(2, Math.floor(Math.random()*(N-1))) };
+        speed = Math.max(120, speed - 10); // a touch faster next episode
+      }
+      animId = setTimeout(() => requestAnimationFrame(step), speed);
+    }
+
+    function startSim() {
+      if (animId) return;
+      step();
+    }
+    function pauseSim() {
+      if (animId) { clearTimeout(animId); animId = null; }
+    }
+    function resetSim() {
+      pauseSim();
+      agent = { x: 0, y: 0 };
+      goal  = { x: N-1, y: N-1 };
+      speed = 400;
+      steps = 0;
+      draw();
+    }
+
+    document.getElementById('simStart').addEventListener('click', startSim);
+    document.getElementById('simPause').addEventListener('click', pauseSim);
+    document.getElementById('simReset').addEventListener('click', resetSim);
+
+    // init draw
+    draw();
+
+    // ---------- SVG node tooltips ----------
+    // simple title-like tooltip using native 'title' or data-tip
+    document.querySelectorAll('svg .node').forEach(n => {
+      const tip = n.getAttribute('data-tip');
+      if (tip) {
+        const title = document.createElementNS('http://www.w3.org/2000/svg','title');
+        title.textContent = tip;
+        n.appendChild(title);
+      }
+    });
+  </script>
+
+<script>
+// ----- Hover descriptions for ACE diagram -----
+const info = document.getElementById('nodeInfo');
+
+    // helper: register hover/focus on each node
+    function bindNodeHover(g){
+    const tip  = g.getAttribute('data-tip') || '';
+    // try to grab the first label <text> inside the node
+    const label = (g.querySelector('text')?.textContent || 'Component').trim();
+    const rect  = g.querySelector('rect') || g;
+
+    // make focusable for keyboard users
+    rect.setAttribute('tabindex','0');
+    rect.setAttribute('role','button');
+    rect.setAttribute('aria-label', `${label}: ${tip}`);
+
+    function show(){ info.innerHTML = `<strong>${label}:</strong> ${tip}`; }
+    function hide(){ info.textContent = 'Hover a node to see what it does.'; }
+
+    rect.addEventListener('mouseenter', show);
+    rect.addEventListener('focus', show);
+    rect.addEventListener('mouseleave', hide);
+    rect.addEventListener('blur', hide);
+    }
+
+    // bind all nodes
+    document.querySelectorAll('svg g.node').forEach(bindNodeHover);
+    </script>
+
+
+</body>
+</html>

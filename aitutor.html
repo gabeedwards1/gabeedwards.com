@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Tutor | Gabriel R. Edwards</title>
+  <meta name="description" content="Interactive showcase of the AI Tutor project — reinforcement learning, retrieval, and safety guardrails in an adaptive tutoring system." />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <style>
+    /* local overrides */
+    .flow-stage {
+      display:inline-block; margin:6px 12px; padding:10px 16px;
+      border-radius:12px; background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      transition:background .3s, box-shadow .3s;
+    }
+    .flow-stage.active {
+      background:rgba(122,162,255,0.15);
+      box-shadow:0 0 12px rgba(122,162,255,0.4);
+    }
+    .metric { font-weight:600; color:var(--primary); }
+    .slider { width:100%; }
+    .guardrail-table {
+      width:100%; border-collapse:collapse;
+    }
+    .guardrail-table td, .guardrail-table th {
+      border:1px solid rgba(255,255,255,0.08);
+      padding:8px; text-align:left;
+    }
+    .guardrail-table th { background:rgba(255,255,255,0.06); }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="/">Gabriel R. Edwards | AI & Cybersecurity Research</a>
+      <nav class="nav" id="site-nav">
+        <a href="/">Home</a>
+        <a href="/#about">About</a>
+        <a href="/#projects">Projects</a>
+        <a href="/resume.html">Resume</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container" style="text-align:center;">
+        <h1>AI Tutor</h1>
+        <p class="lead">
+          An <strong>RL-guided tutoring system</strong> that adapts reasoning depth, retrieval context, and safety guardrails to personalize AI learning experiences.
+        </p>
+        <div class="actions">
+          <a href="#flow" class="btn">See Reasoning Flow</a>
+          <a href="#sandbox" class="btn">Try Sandbox</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLOW ANIMATION -->
+    <section id="flow" class="section alt">
+      <div class="container" style="text-align:center;">
+        <h2>Reasoning Flow</h2>
+        <p class="meta">Simulated data pipeline showing how AI Tutor processes a query.</p>
+
+        <div id="flowStages" style="margin-top:24px;">
+          <span class="flow-stage" id="stage1">1️⃣ Retrieve Context</span>
+          <span class="flow-stage" id="stage2">2️⃣ RL Policy Decision</span>
+          <span class="flow-stage" id="stage3">3️⃣ Generate Answer</span>
+          <span class="flow-stage" id="stage4">4️⃣ Safety Guardrails</span>
+        </div>
+
+        <div style="margin-top:20px;">
+          <button id="runFlow" class="btn">Run Simulation</button>
+        </div>
+        <p id="flowStatus" style="margin-top:16px;color:var(--muted);"></p>
+      </div>
+    </section>
+
+    <!-- SANDBOX -->
+    <section id="sandbox" class="section">
+      <div class="container">
+        <h2>Build Your Tutor</h2>
+        <p class="meta">Adjust parameters and see simulated metrics for reward, latency, and safety confidence.</p>
+        <div class="card">
+          <label>Retrieval Depth (Top-k): <span id="valK" class="metric">3</span></label>
+          <input type="range" id="sliderK" class="slider" min="1" max="10" value="3">
+          <label>Reasoning Depth: <span id="valDepth" class="metric">Balanced</span></label>
+          <input type="range" id="sliderDepth" class="slider" min="1" max="3" value="2">
+          <label>Safety Guardrails: <span id="valSafety" class="metric">On</span></label>
+          <input type="checkbox" id="chkSafety" checked>
+          <div style="margin-top:16px;">
+            <button id="runSim" class="btn">Simulate Metrics</button>
+          </div>
+          <div id="results" style="margin-top:20px;display:none;">
+            <p>Latency: <span id="latency" class="metric"></span> ms</p>
+            <p>Reward: <span id="reward" class="metric"></span></p>
+            <p>Safety Confidence: <span id="safety" class="metric"></span>%</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUARDRAIL COMPARISON -->
+    <section class="section alt">
+      <div class="container">
+        <h2>Guardrails in Action</h2>
+        <div class="card">
+          <table class="guardrail-table">
+            <tr><th>Prompt</th><th>Without Guardrails</th><th>With Guardrails</th></tr>
+            <tr>
+              <td>"Show me an exploit for SQL injection."</td>
+              <td>⚠️ Returns unsafe code with no disclaimers.</td>
+              <td>✅ Explains the vulnerability conceptually, adds mitigation and disclosure guidance.</td>
+            </tr>
+            <tr>
+              <td>"Summarize PPO in one line."</td>
+              <td>✅ “PPO updates policies safely.”</td>
+              <td>✅ Same, but adds citation and link to source [OpenAI 2017].</td>
+            </tr>
+            <tr>
+              <td>"Compare AIRL and PPO."</td>
+              <td>Partial comparison, may miss reward explanation.</td>
+              <td>Detailed breakdown including reward inference, policy optimization, and examples.</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="card" style="text-align:center;">
+          <h3>Interested in collaborating?</h3>
+          <p class="meta">This project combines RL + RAG + safety research for adaptive AI tutoring. Contact for research discussions or demos.</p>
+          <a href="mailto:gre4bt@umsystem.edu" class="btn">Contact Me</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> Gabriel R. Edwards. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // year + AOS
+    document.getElementById('year').textContent = new Date().getFullYear();
+    AOS.init({ once:true, duration:600 });
+
+    // mobile nav
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('site-nav');
+    toggle?.addEventListener('click', ()=>nav.classList.toggle('open'));
+
+    // Reasoning flow animation
+    const stages = [1,2,3,4].map(n=>document.getElementById('stage'+n));
+    const status = document.getElementById('flowStatus');
+    document.getElementById('runFlow').addEventListener('click', async ()=>{
+      status.textContent="Running reasoning flow...";
+      for(let s of stages){ s.classList.remove('active'); }
+      for(let i=0;i<stages.length;i++){
+        await new Promise(r=>setTimeout(r,800));
+        stages[i].classList.add('active');
+        status.textContent=`Stage ${i+1} complete.`;
+      }
+      await new Promise(r=>setTimeout(r,600));
+      status.textContent="✅ All stages complete. Adaptive response generated!";
+    });
+
+    // Sandbox simulation
+    const k=document.getElementById('sliderK');
+    const depth=document.getElementById('sliderDepth');
+    const safe=document.getElementById('chkSafety');
+    const valK=document.getElementById('valK');
+    const valDepth=document.getElementById('valDepth');
+    const valSafety=document.getElementById('valSafety');
+    k.oninput=()=>valK.textContent=k.value;
+    depth.oninput=()=>{
+      const map={1:'Shallow',2:'Balanced',3:'Deep'};
+      valDepth.textContent=map[depth.value];
+    };
+    safe.onchange=()=>valSafety.textContent=safe.checked?'On':'Off';
+    document.getElementById('runSim').addEventListener('click',()=>{
+      const baseLatency=1000 - k.value*30 - depth.value*50;
+      const reward=(depth.value*0.8 + k.value*0.1 + (safe.checked?0.4:0.2)).toFixed(1);
+      const safetyScore=safe.checked? (90 - depth.value*5) : (50 - depth.value*10);
+      document.getElementById('latency').textContent=Math.max(200,Math.round(baseLatency));
+      document.getElementById('reward').textContent=reward;
+      document.getElementById('safety').textContent=Math.max(0,safetyScore);
+      document.getElementById('results').style.display='block';
+    });
+  </script>
+</body>
+</html>

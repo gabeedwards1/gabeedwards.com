@@ -61,26 +61,26 @@
 
   <main>
     <section class="hero">
-      <div class="container">
+      <div class="container" style="text-align:center;">
+        <img src="/assets/gabe.jpg" alt="Gabriel R. Edwards" class="profile-pic">
+
         <h1>Hi, I'm Gabe.</h1>
-        <p class="lead">I design AI-driven systems for cybersecurity training — blending reinforcement learning, intelligent tutoring, and adaptive VR to build safer, smarter learning experiences.</p>
+
         <div class="actions">
           <a href="#projects" class="btn">See my work</a>
-          <a href="/resume.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Download Resume</a>
+          <a href="/resume.pdf" class="btn" target="_blank" rel="noopener">Download Resume</a>
         </div>
       </div>
     </section>
+
 
     <section id="about" class="section">
       <div class="container grid-2">
         <div>
           <h2>About</h2>
           <p>
-            I'm a computer science researcher focused on the intersection of <strong>artificial intelligence</strong> and <strong>cybersecurity</strong>.
-            My work explores how <strong>reinforcement learning</strong> (PPO/AIRL), <strong>intelligent tutoring systems</strong>, and
-            <strong>adaptive VR environments</strong> can elevate cybersecurity education and defense training. I build systems that analyze player
-            behavior, <em>adapt difficulty dynamically</em>, and provide safe, explainable feedback rooted in RL and neural modeling.
-          </p>
+          I design AI-driven systems for cybersecurity training, blending reinforcement learning, 
+          intelligent tutoring,and adaptive VR to build safer, smarter learning experiences.</p>
           <p>
             Tools & domains I work with: Python, PyTorch, Unity (VR), SwiftUI, RL pipelines, RAG/guardrails, and secure deployment.
           </p>
@@ -103,23 +103,32 @@
 
         <div class="cards">
           <article class="card">
-            <h3>ACE (VR Cyber Lab)</h3>
-            <p>Adaptive cybersecurity training with PPO/AIRL and a Unity VR front-end. Python backend ingests player telemetry to drive difficulty and hints.</p>
-            <p class="meta">Unity · Python · RL · Telemetry · VR</p>
+            <h3>ACE (Adaptive Content Engine)</h3>
+            <p>
+              The <strong>Adaptive Content Engine (ACE)</strong> is a reinforcement learning–driven VR training system
+              that personalizes cybersecurity education. It uses <strong>PPO</strong> and <strong>AIRL</strong> models to
+              dynamically adjust challenge difficulty based on player performance, improving both engagement and learning efficiency.
+            </p>
+            <p class="meta">Unity · PyTorch · TensorFlow · Reinforcement Learning</p>
             <div class="links">
-              <a href="https://github.com/yourusername/ace-vr" class="link" target="_blank" rel="noopener">GitHub →</a>
-              <a href="#" class="link">Project page →</a>
+              <a href="/ace.html" class="link">Project page →</a>
             </div>
+
           </article>
 
           <article class="card">
-            <h3>AI Tutor for Cybersecurity</h3>
-            <p>LLM tutoring with RL-guided CoT, retrieval-augmented responses, and safety guardrails for secure, citation-first assistance.</p>
-            <p class="meta">Python · RAG · RL · Safety</p>
+            <h3>AI Tutor</h3>
+            <p>
+              The <strong>AI Tutor</strong> project applies <strong>reinforcement learning–guided chain-of-thought (CoT)</strong>
+              to enhance the reasoning and adaptability of large language models in tutoring contexts. It integrates
+              <strong>retrieval-augmented generation (RAG)</strong> and <strong>safety guardrails</strong> to deliver secure,
+              context-aware, and citation-first feedback for cybersecurity and AI education.
+            </p>
+            <p class="meta">Python · RAG · RL · LLMs · Safe AI</p>
             <div class="links">
-              <a href="https://github.com/yourusername/ai-tutor" class="link" target="_blank" rel="noopener">GitHub →</a>
-              <a href="#" class="link">Project page →</a>
+              <a href="/aitutor.html" class="link">Project page →</a>
             </div>
+
           </article>
 
           <!-- Add more project cards as needed -->
@@ -127,15 +136,28 @@
       </div>
     </section>
 
-    <section id="contact" class="section">
-      <div class="container">
-        <h2>Contact</h2>
-        <p>Reach out via <a href="mailto:gre4bt@umsystem.edu">gre4bt@umsystem.edu</a> or connect on
-          <a href="https://www.linkedin.com/in/gabriel-edwards-04536392/" target="_blank" rel="noopener">LinkedIn</a>.
-        </p>
-      </div>
-    </section>
-  </main>
+<section id="contact" class="section">
+  <div class="container" style="text-align:center;">
+    <h2>Contact</h2>
+    <p class="lead">Let's connect! Whether it's research collaboration, cybersecurity discussions, AI project ideas - I'd love to hear from you!</p>
+
+    <div class="contact-links" style="margin-top:24px; display:flex; flex-wrap:wrap; justify-content:center; gap:24px;">
+      <a href="mailto:gre4bt@umsystem.edu" class="contact-card" target="_blank" rel="noopener" aria-label="Email Gabe">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="" class="icon" />
+        <span>Email</span>
+      </a>
+      <a href="https://www.linkedin.com/in/gabriel-edwards-04536392/" class="contact-card" target="_blank" rel="noopener" aria-label="LinkedIn Profile">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="" class="icon" />
+        <span>LinkedIn</span>
+      </a>
+      <a href="https://github.com/gabeedwards1" class="contact-card" target="_blank" rel="noopener" aria-label="GitHub Profile">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="" class="icon" />
+        <span>GitHub</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 
   <footer class="site-footer">
     <div class="container">
@@ -169,5 +191,30 @@
       });
     });
   </script>
+
+<!-- 1. Load Vanta.js dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+<!-- 2. Activate the animation on your hero section -->
+<script>
+VANTA.NET({
+  el: ".hero",                 // target section
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  scale: 1.00,
+  scaleMobile: 1.00,
+  color: 0x4b6cd4,             // softer blue (less glow) 
+  backgroundColor: 0x0f1220,   // matches your dark theme
+  points: 9.0,                 // number of dots
+  maxDistance: 22.0,           // spacing between nodes
+  spacing: 18.0
+});
+</script>
+
+
 </body>
 </html>
