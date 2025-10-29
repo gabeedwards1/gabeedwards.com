@@ -20,22 +20,24 @@
   </header>
 
   <main class="section">
-    <div class="resume-viewer" style="margin-top:16px">
-  <!-- Use a cache-buster to avoid stale inline cache -->
-  <embed src="/resume.pdf?v=1" type="application/pdf" width="100%" height="900"
-         style="border:none;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.25);" />
+    <div class="container">
+      <h1>Resume</h1>
+      <p>If the embedded viewer doesn’t display, <a href="/resume.pdf" class="link" target="_blank" rel="noopener">open the PDF in a new tab →</a></p>
 
-  <!-- Fallbacks -->
-  <object data="/resume.pdf?v=1" type="application/pdf" width="100%" height="900"
-          style="border:none;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.25);">
-    <iframe src="/resume.pdf?v=1#view=FitH" width="100%" height="900" style="border:none;"></iframe>
-    <p style="margin-top:12px">
-      Your browser can’t display embedded PDFs.
-      <a href="/resume.pdf?v=1" class="link" target="_blank" rel="noopener">Open the resume in a new tab →</a>
-    </p>
-  </object>
-</div>
-
+      <div class="resume-viewer" style="margin-top:16px">
+        <!-- Primary: object embed -->
+        <object data="/resume.pdf" type="application/pdf" width="100%" height="900"
+                style="border:none;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.25);">
+          <!-- Fallback: iframe -->
+          <iframe src="/resume.pdf" width="100%" height="900"
+                  style="border:none;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.25);"></iframe>
+          <!-- Final fallback -->
+          <p style="margin-top:12px">Your browser can’t display embedded PDFs. 
+            <a href="/resume.pdf" class="link" target="_blank" rel="noopener">Open the resume in a new tab →</a>
+          </p>
+        </object>
+      </div>
+    </div>
   </main>
 
   <footer class="site-footer">
