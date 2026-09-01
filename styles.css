@@ -272,6 +272,25 @@ a[target="_blank"] {
 .node-info strong{ color: var(--primary); }
 svg .node rect{ pointer-events: all; }  /* ensure nodes receive hover */
 
+/* SAGE gatekeeper stage captions -- always visible, no hover required */
+.stage-captions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+  text-align: center;
+}
+.stage-captions h4 {
+  margin: 0 0 6px;
+  font-size: .95rem;
+  color: var(--text);
+}
+.stage-captions p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .85rem;
+}
+
 
 /* make equal-height cards inside grid-2 sections */
 .section .grid-2 {

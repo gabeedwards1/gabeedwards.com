@@ -74,7 +74,7 @@
         <h2>A three-layer Safety Gatekeeper, not a prompt</h2>
         <p class="meta" style="max-width:640px;">
           Every query is checked against role, curriculum state, and cognitive intent before it ever
-          reaches the language model's context. Hover a stage below for what it checks.
+          reaches the language model's context.
         </p>
         <div class="card" style="overflow:auto; margin-top:16px;">
           <div style="min-height: 200px;">
@@ -93,24 +93,24 @@
                 </filter>
               </defs>
 
-              <g class="node" data-tip="A student submits a question or request to the tutor.">
+              <g class="node">
                 <rect x="20" y="60" width="190" height="80" rx="14" fill="url(#sageNodeGrad)" stroke="rgba(255,255,255,0.18)"/>
                 <text x="115" y="105" text-anchor="middle" fill="#e8ecff" font-size="15">Query Received</text>
               </g>
 
-              <g class="node" data-tip="Role-Based and Attribute-Based Access Control verify the learner's permissions and curriculum readiness before any content is retrieved.">
+              <g class="node">
                 <rect x="270" y="60" width="220" height="80" rx="14" fill="url(#sageNodeGrad)" stroke="rgba(255,255,255,0.18)"/>
                 <text x="380" y="97" text-anchor="middle" fill="#e8ecff" font-size="15">RBAC + ABAC</text>
                 <text x="380" y="117" text-anchor="middle" fill="#b9c0d9" font-size="12">Role &amp; Curriculum Check</text>
               </g>
 
-              <g class="node" data-tip="A lightweight intent classifier checks whether the request is conceptual, problem-solving, debugging, or review — and constrains the response type accordingly.">
+              <g class="node">
                 <rect x="540" y="60" width="220" height="80" rx="14" fill="url(#sageNodeGrad)" stroke="rgba(255,255,255,0.18)"/>
                 <text x="650" y="97" text-anchor="middle" fill="#e8ecff" font-size="15">Cognitive Access</text>
                 <text x="650" y="117" text-anchor="middle" fill="#b9c0d9" font-size="12">Intent Check</text>
               </g>
 
-              <g class="node" data-tip="Only content that passes all three checks reaches the LLM's context, producing a hint or scaffold instead of a bypassed answer.">
+              <g class="node">
                 <rect x="810" y="60" width="170" height="80" rx="14" fill="url(#sageNodeGrad)" stroke="rgba(255,255,255,0.18)"/>
                 <text x="895" y="97" text-anchor="middle" fill="#e8ecff" font-size="15">Scaffolded</text>
                 <text x="895" y="117" text-anchor="middle" fill="#b9c0d9" font-size="12">Response</text>
@@ -125,9 +125,24 @@
                 <polygon points="810,100 800,94 800,106" fill="#7aa2ff"/>
               </g>
             </svg>
-            <div id="sageNodeInfo" class="node-info" aria-live="polite">
-              Hover a stage to see what it checks.
-            </div>
+          </div>
+        </div>
+        <div class="stage-captions">
+          <div>
+            <h4>Query Received</h4>
+            <p>A student submits a question or request to the tutor.</p>
+          </div>
+          <div>
+            <h4>RBAC + ABAC</h4>
+            <p>Verifies the learner's role and curriculum readiness before any content is retrieved.</p>
+          </div>
+          <div>
+            <h4>Cognitive Access</h4>
+            <p>Classifies intent — conceptual, problem-solving, debugging, or review — and constrains the response type.</p>
+          </div>
+          <div>
+            <h4>Scaffolded Response</h4>
+            <p>Only content that clears all three checks reaches the model's context.</p>
           </div>
         </div>
       </div>
@@ -215,36 +230,6 @@
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.getElementById('site-nav');
     toggle?.addEventListener('click', ()=>nav.classList.toggle('open'));
-
-    // ---------- SVG node tooltips (Safety Gatekeeper diagram) ----------
-    document.querySelectorAll('svg .node').forEach(n => {
-      const tip = n.getAttribute('data-tip');
-      if (tip) {
-        const title = document.createElementNS('http://www.w3.org/2000/svg','title');
-        title.textContent = tip;
-        n.appendChild(title);
-      }
-    });
-
-    const info = document.getElementById('sageNodeInfo');
-    function bindNodeHover(g){
-      const tip = g.getAttribute('data-tip') || '';
-      const label = (g.querySelector('text')?.textContent || 'Stage').trim();
-      const rect = g.querySelector('rect') || g;
-
-      rect.setAttribute('tabindex','0');
-      rect.setAttribute('role','button');
-      rect.setAttribute('aria-label', `${label}: ${tip}`);
-
-      function show(){ info.innerHTML = `<strong>${label}:</strong> ${tip}`; }
-      function hide(){ info.textContent = 'Hover a stage to see what it checks.'; }
-
-      rect.addEventListener('mouseenter', show);
-      rect.addEventListener('focus', show);
-      rect.addEventListener('mouseleave', hide);
-      rect.addEventListener('blur', hide);
-    }
-    document.querySelectorAll('svg g.node').forEach(bindNodeHover);
   </script>
 </body>
 </html>
