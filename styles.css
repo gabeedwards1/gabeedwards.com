@@ -6,6 +6,7 @@
   --primary: #7aa2ff;
   --ring: rgba(122,162,255,.3);
   --radius: 16px;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 * { box-sizing: border-box; }
@@ -42,8 +43,15 @@ button:focus-visible { outline: none; box-shadow: 0 0 0 6px var(--ring); border-
 .logo:hover { opacity: .9; }
 
 .nav { display: flex; align-items: center; gap: 18px; }
-.nav a { color: var(--muted); }
-.nav a:hover { color: var(--text); }
+.nav a:not(.btn) {
+  color: var(--muted);
+  font-family: var(--mono);
+}
+.nav a:not(.btn)::before {
+  content: "~/";
+  color: var(--primary);
+}
+.nav a:not(.btn):hover { color: var(--primary); }
 
 /* Buttons */
 .btn {
