@@ -7,21 +7,8 @@
   <meta name="description" content="SAGE — an intelligent tutoring framework that enforces instructor-regulated learning through a three-layer Safety Gatekeeper (RBAC, ABAC, CAC) built on a knowledge graph of learner state and curricular content." />
   <link rel="stylesheet" href="/styles.css" />
   <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
   <style>
     /* local overrides */
-    .flow-stage {
-      display:inline-block; margin:6px 12px; padding:10px 16px;
-      border-radius:12px; background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.08);
-      transition:background .3s, box-shadow .3s;
-    }
-    .flow-stage.active {
-      background:rgba(122,162,255,0.15);
-      box-shadow:0 0 12px rgba(122,162,255,0.4);
-    }
-    .metric { font-weight:600; color:var(--primary); }
-    .slider { width:100%; }
     .guardrail-table {
       width:100%; border-collapse:collapse;
     }
@@ -58,58 +45,14 @@
           curricular content.
         </p>
         <div class="actions">
-          <a href="#flow" class="btn">See Gatekeeper Flow</a>
+          <a href="#access-control" class="btn">See access control in action</a>
           <a href="https://doi.org/10.1109/ICHMS69701.2026.11602253" class="btn btn-secondary" target="_blank" rel="noopener">Read the Paper</a>
         </div>
       </div>
     </section>
 
-    <!-- FLOW ANIMATION -->
-    <section id="flow" class="section alt">
-      <div class="container" style="text-align:center;">
-        <h2>Safety Gatekeeper Flow</h2>
-        <p class="meta">Simulated walkthrough of how SAGE evaluates a student query before generating a response.</p>
-
-        <div id="flowStages" style="margin-top:24px;">
-          <span class="flow-stage" id="stage1">1️⃣ Query Received</span>
-          <span class="flow-stage" id="stage2">2️⃣ RBAC + ABAC Check</span>
-          <span class="flow-stage" id="stage3">3️⃣ Cognitive Access Control</span>
-          <span class="flow-stage" id="stage4">4️⃣ Scaffolded Response</span>
-        </div>
-
-        <div style="margin-top:20px;">
-          <button id="runFlow" class="btn">Run Simulation</button>
-        </div>
-        <p id="flowStatus" style="margin-top:16px;color:var(--muted);"></p>
-      </div>
-    </section>
-
-    <!-- SANDBOX -->
-    <section id="sandbox" class="section">
-      <div class="container">
-        <h2>Try the Gatekeeper</h2>
-        <p class="meta">Adjust parameters and see simulated compliance metrics (illustrative, not live model output).</p>
-        <div class="card">
-          <label>Curriculum Depth (Topics Unlocked): <span id="valK" class="metric">3</span></label>
-          <input type="range" id="sliderK" class="slider" min="1" max="10" value="3">
-          <label>Cognitive Access Strictness: <span id="valDepth" class="metric">Balanced</span></label>
-          <input type="range" id="sliderDepth" class="slider" min="1" max="3" value="2">
-          <label>Access Control Enforcement: <span id="valSafety" class="metric">On</span></label>
-          <input type="checkbox" id="chkSafety" checked>
-          <div style="margin-top:16px;">
-            <button id="runSim" class="btn">Simulate Compliance</button>
-          </div>
-          <div id="results" style="margin-top:20px;display:none;">
-            <p>Response Latency: <span id="latency" class="metric"></span> ms</p>
-            <p>Pedagogy Score: <span id="reward" class="metric"></span></p>
-            <p>Security Compliance: <span id="safety" class="metric"></span>%</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- GUARDRAIL COMPARISON -->
-    <section class="section alt">
+    <!-- ACCESS CONTROL COMPARISON -->
+    <section id="access-control" class="section alt">
       <div class="container">
         <h2>Access Control in Action</h2>
         <p class="meta">Based on evaluation results from the ICHMS 2026 paper against prompt-based LLM tutors (GPT/Gemini).</p>
@@ -157,54 +100,13 @@
     </div>
   </footer>
 
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
-    // year + AOS
     document.getElementById('year').textContent = new Date().getFullYear();
-    AOS.init({ once:true, duration:600 });
 
     // mobile nav
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.getElementById('site-nav');
     toggle?.addEventListener('click', ()=>nav.classList.toggle('open'));
-
-    // Reasoning flow animation
-    const stages = [1,2,3,4].map(n=>document.getElementById('stage'+n));
-    const status = document.getElementById('flowStatus');
-    document.getElementById('runFlow').addEventListener('click', async ()=>{
-      status.textContent="Running Safety Gatekeeper checks...";
-      for(let s of stages){ s.classList.remove('active'); }
-      for(let i=0;i<stages.length;i++){
-        await new Promise(r=>setTimeout(r,800));
-        stages[i].classList.add('active');
-        status.textContent=`Stage ${i+1} complete.`;
-      }
-      await new Promise(r=>setTimeout(r,600));
-      status.textContent="✅ All checks passed. Scaffolded response delivered to the learner!";
-    });
-
-    // Sandbox simulation
-    const k=document.getElementById('sliderK');
-    const depth=document.getElementById('sliderDepth');
-    const safe=document.getElementById('chkSafety');
-    const valK=document.getElementById('valK');
-    const valDepth=document.getElementById('valDepth');
-    const valSafety=document.getElementById('valSafety');
-    k.oninput=()=>valK.textContent=k.value;
-    depth.oninput=()=>{
-      const map={1:'Shallow',2:'Balanced',3:'Deep'};
-      valDepth.textContent=map[depth.value];
-    };
-    safe.onchange=()=>valSafety.textContent=safe.checked?'On':'Off';
-    document.getElementById('runSim').addEventListener('click',()=>{
-      const baseLatency=1000 - k.value*30 - depth.value*50;
-      const reward=(depth.value*0.8 + k.value*0.1 + (safe.checked?0.4:0.2)).toFixed(1);
-      const safetyScore=safe.checked? (90 - depth.value*5) : (50 - depth.value*10);
-      document.getElementById('latency').textContent=Math.max(200,Math.round(baseLatency));
-      document.getElementById('reward').textContent=reward;
-      document.getElementById('safety').textContent=Math.max(0,safetyScore);
-      document.getElementById('results').style.display='block';
-    });
   </script>
 </body>
 </html>
