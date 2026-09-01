@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI Tutor | Gabriel R. Edwards</title>
-  <meta name="description" content="Interactive showcase of the AI Tutor project — reinforcement learning, retrieval, and safety guardrails in an adaptive tutoring system." />
+  <title>SAGE | Gabriel R. Edwards</title>
+  <meta name="description" content="SAGE — an intelligent tutoring framework that enforces instructor-regulated learning through a three-layer Safety Gatekeeper (RBAC, ABAC, CAC) built on a knowledge graph of learner state and curricular content." />
   <link rel="stylesheet" href="/styles.css" />
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
@@ -50,13 +50,16 @@
     <!-- HERO -->
     <section class="hero">
       <div class="container" style="text-align:center;">
-        <h1>AI Tutor</h1>
+        <h1>SAGE</h1>
         <p class="lead">
-          An <strong>RL-guided tutoring system</strong> that adapts reasoning depth, retrieval context, and safety guardrails to personalize AI learning experiences.
+          Student-Focused Adaptive Guidance Engine — an intelligent tutoring framework that enforces
+          <strong>instructor-regulated learning</strong> through a three-layer Safety Gatekeeper (role-based,
+          attribute-based, and cognitive access control) built on a knowledge graph of learner state and
+          curricular content.
         </p>
         <div class="actions">
-          <a href="#flow" class="btn">See Reasoning Flow</a>
-          <a href="#sandbox" class="btn">Try Sandbox</a>
+          <a href="#flow" class="btn">See Gatekeeper Flow</a>
+          <a href="https://doi.org/10.1109/ICHMS69701.2026.11602253" class="btn btn-secondary" target="_blank" rel="noopener">Read the Paper</a>
         </div>
       </div>
     </section>
@@ -64,14 +67,14 @@
     <!-- FLOW ANIMATION -->
     <section id="flow" class="section alt">
       <div class="container" style="text-align:center;">
-        <h2>Reasoning Flow</h2>
-        <p class="meta">Simulated data pipeline showing how AI Tutor processes a query.</p>
+        <h2>Safety Gatekeeper Flow</h2>
+        <p class="meta">Simulated walkthrough of how SAGE evaluates a student query before generating a response.</p>
 
         <div id="flowStages" style="margin-top:24px;">
-          <span class="flow-stage" id="stage1">1️⃣ Retrieve Context</span>
-          <span class="flow-stage" id="stage2">2️⃣ RL Policy Decision</span>
-          <span class="flow-stage" id="stage3">3️⃣ Generate Answer</span>
-          <span class="flow-stage" id="stage4">4️⃣ Safety Guardrails</span>
+          <span class="flow-stage" id="stage1">1️⃣ Query Received</span>
+          <span class="flow-stage" id="stage2">2️⃣ RBAC + ABAC Check</span>
+          <span class="flow-stage" id="stage3">3️⃣ Cognitive Access Control</span>
+          <span class="flow-stage" id="stage4">4️⃣ Scaffolded Response</span>
         </div>
 
         <div style="margin-top:20px;">
@@ -84,22 +87,22 @@
     <!-- SANDBOX -->
     <section id="sandbox" class="section">
       <div class="container">
-        <h2>Build Your Tutor</h2>
-        <p class="meta">Adjust parameters and see simulated metrics for reward, latency, and safety confidence.</p>
+        <h2>Try the Gatekeeper</h2>
+        <p class="meta">Adjust parameters and see simulated compliance metrics (illustrative, not live model output).</p>
         <div class="card">
-          <label>Retrieval Depth (Top-k): <span id="valK" class="metric">3</span></label>
+          <label>Curriculum Depth (Topics Unlocked): <span id="valK" class="metric">3</span></label>
           <input type="range" id="sliderK" class="slider" min="1" max="10" value="3">
-          <label>Reasoning Depth: <span id="valDepth" class="metric">Balanced</span></label>
+          <label>Cognitive Access Strictness: <span id="valDepth" class="metric">Balanced</span></label>
           <input type="range" id="sliderDepth" class="slider" min="1" max="3" value="2">
-          <label>Safety Guardrails: <span id="valSafety" class="metric">On</span></label>
+          <label>Access Control Enforcement: <span id="valSafety" class="metric">On</span></label>
           <input type="checkbox" id="chkSafety" checked>
           <div style="margin-top:16px;">
-            <button id="runSim" class="btn">Simulate Metrics</button>
+            <button id="runSim" class="btn">Simulate Compliance</button>
           </div>
           <div id="results" style="margin-top:20px;display:none;">
-            <p>Latency: <span id="latency" class="metric"></span> ms</p>
-            <p>Reward: <span id="reward" class="metric"></span></p>
-            <p>Safety Confidence: <span id="safety" class="metric"></span>%</p>
+            <p>Response Latency: <span id="latency" class="metric"></span> ms</p>
+            <p>Pedagogy Score: <span id="reward" class="metric"></span></p>
+            <p>Security Compliance: <span id="safety" class="metric"></span>%</p>
           </div>
         </div>
       </div>
@@ -108,24 +111,25 @@
     <!-- GUARDRAIL COMPARISON -->
     <section class="section alt">
       <div class="container">
-        <h2>Guardrails in Action</h2>
+        <h2>Access Control in Action</h2>
+        <p class="meta">Based on evaluation results from the ICHMS 2026 paper against prompt-based LLM tutors (GPT/Gemini).</p>
         <div class="card">
           <table class="guardrail-table">
-            <tr><th>Prompt</th><th>Without Guardrails</th><th>With Guardrails</th></tr>
+            <tr><th>Prompt</th><th>Without SAGE (Prompt-Based Tutor)</th><th>With SAGE</th></tr>
             <tr>
-              <td>"Show me an exploit for SQL injection."</td>
-              <td>⚠️ Returns unsafe code with no disclaimers.</td>
-              <td>✅ Explains the vulnerability conceptually, adds mitigation and disclosure guidance.</td>
+              <td>"Show me the exam answer key."</td>
+              <td>⚠️ May leak restricted content under adversarial framing — only ~30% security compliance for prompt-based tutors.</td>
+              <td>✅ RBAC denies access to exam-key content outright — SAGE reaches 90% security compliance.</td>
             </tr>
             <tr>
-              <td>"Summarize PPO in one line."</td>
-              <td>✅ “PPO updates policies safely.”</td>
-              <td>✅ Same, but adds citation and link to source [OpenAI 2017].</td>
+              <td>"How do I reverse an array in C?"</td>
+              <td>Returns a complete working solution, encouraging cognitive offloading.</td>
+              <td>Cognitive Access Control detects a problem-solving intent and returns hints/pseudocode instead of a full solution.</td>
             </tr>
             <tr>
-              <td>"Compare AIRL and PPO."</td>
-              <td>Partial comparison, may miss reward explanation.</td>
-              <td>Detailed breakdown including reward inference, policy optimization, and examples.</td>
+              <td>"Explain pointers." (prerequisites not yet mastered)</td>
+              <td>Answers directly regardless of the learner's readiness.</td>
+              <td>ABAC checks the knowledge graph, finds prerequisites unmet, and redirects toward prerequisite scaffolding.</td>
             </tr>
           </table>
         </div>
@@ -136,9 +140,12 @@
     <section class="section">
       <div class="container">
         <div class="card" style="text-align:center;">
-          <h3>Interested in collaborating?</h3>
-          <p class="meta">This project combines RL + RAG + safety research for adaptive AI tutoring. Contact for research discussions or demos.</p>
-          <a href="mailto:gre4bt@umsystem.edu" class="btn">Contact Me</a>
+          <h3>Interested in the research?</h3>
+          <p class="meta">SAGE was developed as part of the AI Education, Research and Infrastructure (AERI) Lab at the University of Missouri–Columbia, advised by Dr. Prasad Calyam. Read the full paper or reach out to discuss the work.</p>
+          <div class="actions" style="justify-content:center;">
+            <a href="mailto:gre4bt@umsystem.edu" class="btn">Contact Me</a>
+            <a href="https://doi.org/10.1109/ICHMS69701.2026.11602253" class="btn btn-secondary" target="_blank" rel="noopener">Read the Paper</a>
+          </div>
         </div>
       </div>
     </section>
@@ -165,7 +172,7 @@
     const stages = [1,2,3,4].map(n=>document.getElementById('stage'+n));
     const status = document.getElementById('flowStatus');
     document.getElementById('runFlow').addEventListener('click', async ()=>{
-      status.textContent="Running reasoning flow...";
+      status.textContent="Running Safety Gatekeeper checks...";
       for(let s of stages){ s.classList.remove('active'); }
       for(let i=0;i<stages.length;i++){
         await new Promise(r=>setTimeout(r,800));
@@ -173,7 +180,7 @@
         status.textContent=`Stage ${i+1} complete.`;
       }
       await new Promise(r=>setTimeout(r,600));
-      status.textContent="✅ All stages complete. Adaptive response generated!";
+      status.textContent="✅ All checks passed. Scaffolded response delivered to the learner!";
     });
 
     // Sandbox simulation
