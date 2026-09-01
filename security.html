@@ -7,9 +7,68 @@
   <meta name="description" content="Cybersecurity work — risk consulting, hands-on security tools, threat modeling and GRC frameworks, and community leadership — Gabriel R. Edwards." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css" />
   <link rel="icon" type="image/png" href="/favicon.png">
+  <style>
+    /* ============================================================
+       Security page: subtle hacker/security accent -- styling only.
+       Scoped to this page via this local <style> block; nothing
+       here touches the shared stylesheet or any other page.
+       ============================================================ */
+    :root {
+      --sec-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --sec-accent: #4ade80;
+    }
+
+    /* monospace for headings, section labels, and metadata tags -- body copy stays on Inter */
+    h1, h2, h3, h4,
+    .eyebrow,
+    .meta,
+    .nav a {
+      font-family: var(--sec-mono);
+    }
+
+    /* single accent color, used sparingly -- no new backgrounds */
+    .eyebrow { color: var(--sec-accent); }
+    .link { color: var(--sec-accent); }
+    .link:hover { color: var(--text); text-decoration-color: var(--sec-accent); }
+    .nav a:hover { color: var(--sec-accent); }
+    .btn-secondary { border-color: rgba(74,222,128,.35); color: var(--sec-accent); }
+    .btn-secondary:hover { border-color: rgba(74,222,128,.55); }
+
+    /* metadata tags outside cards had no dedicated rule -- give them one */
+    .meta { color: var(--muted); font-size: .85rem; }
+
+    /* section headers read like code comments: "// Leadership" */
+    .eyebrow::before { content: "// "; }
+
+    /* nav reads like a shell path: "~/Home" */
+    .nav a::before { content: "~/"; color: var(--sec-accent); }
+
+    /* tool/framework lists read like a code block */
+    #tools .card p {
+      font-family: var(--sec-mono);
+      font-size: .85rem;
+      line-height: 1.7;
+      background: rgba(74,222,128,.06);
+      border: 1px solid rgba(74,222,128,.25);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+
+    /* blinking cursor after the hero heading */
+    .hero h1::after {
+      content: "_";
+      color: var(--sec-accent);
+      margin-left: 4px;
+      animation: sec-blink 1s steps(1) infinite;
+    }
+    @keyframes sec-blink { 50% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .hero h1::after { animation: none; }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
