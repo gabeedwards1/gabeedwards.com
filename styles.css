@@ -300,27 +300,36 @@ svg .node rect{ pointer-events: all; }  /* ensure nodes receive hover */
   margin: 0 0 10px;
 }
 
-/* stat tiles: real, sourced numbers only -- big figure + short label */
+/* stat tiles: real, sourced numbers only -- label, big figure, supporting detail */
 .stat-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: center;
-  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
   margin-top: 20px;
 }
-.stat-row .stat { min-width: 140px; }
+.stat-row .stat {
+  text-align: center;
+  padding-top: 18px;
+  border-top: 2px solid var(--primary);
+}
+.stat-row .stat-label {
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
 .stat-row .num {
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
   font-weight: 800;
   color: var(--primary);
   line-height: 1;
 }
-.stat-row .label {
+.stat-row .stat-detail {
   color: var(--muted);
-  font-size: .9rem;
-  margin: 6px auto 0;
-  max-width: 160px;
+  font-size: .88rem;
+  margin: 10px 0 0;
 }
 
 /* contact card info */
