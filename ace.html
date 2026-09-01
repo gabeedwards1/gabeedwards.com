@@ -67,7 +67,7 @@
         <p class="meta" style="max-width:640px;">
           Every action in the VR escape room is logged as telemetry. AIRL infers a reward signal from that
           behavior, and a PPO policy uses it to decide the next difficulty level and hint strategy — closing
-          the loop back into the session live. Hover a stage below for what it does.
+          the loop back into the session live.
         </p>
         <div class="card" style="overflow:auto; margin-top:16px;">
           <!-- Responsive SVG flow diagram with hover tooltips -->
@@ -88,23 +88,23 @@
               </defs>
 
               <!-- nodes -->
-              <g class="node" data-tip="Unity VR environment emits state, actions, and events as telemetry.">
+              <g class="node">
                 <rect x="40" y="40" width="220" height="80" rx="14" fill="url(#nodeGrad)" stroke="rgba(255,255,255,0.18)"/>
                 <text x="150" y="87" text-anchor="middle" fill="#e8ecff" font-size="16">VR Front-End (Unity)</text>
               </g>
 
-              <g class="node" data-tip="Session features: time, mistakes, unnecessary actions, hints, completion.">
+              <g class="node">
                 <rect x="300" y="40" width="220" height="80" rx="14" fill="url(#nodeGrad)" stroke="rgba(255,255,255,0.18)"/>
                 <text x="410" y="87" text-anchor="middle" fill="#e8ecff" font-size="16">Telemetry / Features</text>
               </g>
 
-              <g class="node" data-tip="AIRL infers reward from behavior and state-action distributions.">
+              <g class="node">
                 <rect x="560" y="40" width="180" height="80" rx="14" fill="url(#nodeGrad)" stroke="rgba(255,255,255,0.18)"/>
                 <text x="650" y="72" text-anchor="middle" fill="#e8ecff" font-size="16">AIRL</text>
                 <text x="650" y="94" text-anchor="middle" fill="#b9c0d9" font-size="12">Reward Estimation</text>
               </g>
 
-              <g class="node" data-tip="PPO policy selects next difficulty level / hint strategy.">
+              <g class="node">
                 <rect x="780" y="40" width="180" height="80" rx="14" fill="url(#nodeGrad)" stroke="rgba(255,255,255,0.18)"/>
                 <text x="870" y="72" text-anchor="middle" fill="#e8ecff" font-size="16">PPO</text>
                 <text x="870" y="94" text-anchor="middle" fill="#b9c0d9" font-size="12">Difficulty Policy</text>
@@ -121,7 +121,7 @@
               </g>
 
               <!-- feedback loop -->
-              <g class="node" data-tip="Adaptive difficulty and hints fed back to VR session.">
+              <g class="node">
                 <rect x="560" y="200" width="400" height="80" rx="14" fill="url(#nodeGrad)" stroke="rgba(255,255,255,0.18)"/>
                 <text x="760" y="246" text-anchor="middle" fill="#e8ecff" font-size="16">Adaptive Hints & Difficulty</text>
               </g>
@@ -137,9 +137,28 @@
                 <polygon points="260,120 254,130 266,130" fill="#7aa2ff"/>
               </g>
             </svg>
-            <div id="nodeInfo" class="node-info" aria-live="polite">
-                Hover a node to see what it does.
-            </div>
+          </div>
+        </div>
+        <div class="stage-captions">
+          <div>
+            <h4>VR Front-End (Unity)</h4>
+            <p>The VR escape room emits state, actions, and events as telemetry.</p>
+          </div>
+          <div>
+            <h4>Telemetry / Features</h4>
+            <p>Session features: time, mistakes, unnecessary actions, hints, completion.</p>
+          </div>
+          <div>
+            <h4>AIRL</h4>
+            <p>Infers a reward signal from behavior and state-action distributions.</p>
+          </div>
+          <div>
+            <h4>PPO</h4>
+            <p>Selects the next difficulty level and hint strategy from that reward signal.</p>
+          </div>
+          <div>
+            <h4>Adaptive Hints & Difficulty</h4>
+            <p>The resulting difficulty and hints feed back into the live VR session.</p>
           </div>
         </div>
       </div>
@@ -204,48 +223,7 @@
 
     // AOS
     AOS?.init && AOS.init({ once: true, duration: 600 });
-
-    // ---------- SVG node tooltips ----------
-    // simple title-like tooltip using native 'title' or data-tip
-    document.querySelectorAll('svg .node').forEach(n => {
-      const tip = n.getAttribute('data-tip');
-      if (tip) {
-        const title = document.createElementNS('http://www.w3.org/2000/svg','title');
-        title.textContent = tip;
-        n.appendChild(title);
-      }
-    });
   </script>
-
-<script>
-// ----- Hover descriptions for ACE diagram -----
-const info = document.getElementById('nodeInfo');
-
-    // helper: register hover/focus on each node
-    function bindNodeHover(g){
-    const tip  = g.getAttribute('data-tip') || '';
-    // try to grab the first label <text> inside the node
-    const label = (g.querySelector('text')?.textContent || 'Component').trim();
-    const rect  = g.querySelector('rect') || g;
-
-    // make focusable for keyboard users
-    rect.setAttribute('tabindex','0');
-    rect.setAttribute('role','button');
-    rect.setAttribute('aria-label', `${label}: ${tip}`);
-
-    function show(){ info.innerHTML = `<strong>${label}:</strong> ${tip}`; }
-    function hide(){ info.textContent = 'Hover a node to see what it does.'; }
-
-    rect.addEventListener('mouseenter', show);
-    rect.addEventListener('focus', show);
-    rect.addEventListener('mouseleave', hide);
-    rect.addEventListener('blur', hide);
-    }
-
-    // bind all nodes
-    document.querySelectorAll('svg g.node').forEach(bindNodeHover);
-    </script>
-
 
 </body>
 </html>
