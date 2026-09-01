@@ -21,6 +21,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Headings and small labels use the mono display face; body copy stays on Inter */
+h1, h2, h3, h4,
+.eyebrow,
+.meta {
+  font-family: var(--mono);
+}
+
 a { color: inherit; text-decoration: none; }
 a:focus-visible,
 button:focus-visible { outline: none; box-shadow: 0 0 0 6px var(--ring); border-radius: 8px; }

@@ -17,23 +17,17 @@
        here touches the shared stylesheet or any other page.
        ============================================================ */
     :root {
-      --sec-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       --sec-accent: #4ade80;
     }
-
-    /* monospace for headings, section labels, and metadata tags -- body copy stays on Inter */
-    h1, h2, h3, h4,
-    .eyebrow,
-    .meta,
-    .nav a {
-      font-family: var(--sec-mono);
-    }
+    /* Font (mono for headings/labels/nav, Inter for body) is now the
+       whole site's typography -- lives in styles.css. Only this page's
+       accent color and comment/path/cursor details stay local here. */
 
     /* single accent color, used sparingly -- no new backgrounds */
     .eyebrow { color: var(--sec-accent); }
     .link { color: var(--sec-accent); }
     .link:hover { color: var(--text); text-decoration-color: var(--sec-accent); }
-    .nav a:hover { color: var(--sec-accent); }
+    .nav a:not(.btn):hover { color: var(--sec-accent); }
     .btn-secondary { border-color: rgba(74,222,128,.35); color: var(--sec-accent); }
     .btn-secondary:hover { border-color: rgba(74,222,128,.55); }
 
@@ -44,11 +38,11 @@
     .eyebrow::before { content: "// "; }
 
     /* nav reads like a shell path: "~/Home" */
-    .nav a::before { content: "~/"; color: var(--sec-accent); }
+    .nav a:not(.btn)::before { content: "~/"; color: var(--sec-accent); }
 
     /* tool/framework lists read like a code block */
     #tools .card p {
-      font-family: var(--sec-mono);
+      font-family: var(--mono);
       font-size: .85rem;
       line-height: 1.7;
       background: rgba(74,222,128,.06);
