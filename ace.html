@@ -4,8 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ACE (Adaptive Content Engine) | Gabriel R. Edwards</title>
-  <meta name="description" content="ACE — a reinforcement learning driven VR training system that adapts cybersecurity content using PPO/AIRL." />
+  <meta name="description" content="ACE — a reinforcement learning driven VR training system that adapts cybersecurity content in real time using PPO/AIRL." />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css" />
   <link rel="icon" type="image/png" href="/favicon.png">
   <!-- Optional: AOS for small scroll reveals (safe to remove if not used elsewhere) -->
@@ -29,44 +32,44 @@
     <!-- HERO -->
     <section class="hero" style="position:relative;">
       <div class="container" style="text-align:center;">
-        <h1>ACE — Adaptive Content Engine</h1>
+        <p class="eyebrow">NSF REU Research · Summer 2025</p>
+        <h1>Cybersecurity training that adapts as fast as the student learns.</h1>
         <p class="lead">
-          Reinforcement learning driven VR training for cybersecurity. ACE uses <strong>PPO</strong> and
-          <strong>AIRL</strong> to adjust challenge difficulty in real time based on learner performance.
+          ACE is a reinforcement-learning-driven VR system that reads how a learner is performing in real
+          time — mistakes, hesitation, hint use — and reshapes the challenge around them with
+          <strong>PPO</strong> and <strong>AIRL</strong>, instead of running everyone through a fixed script.
         </p>
         <div class="actions">
-          <a href="#architecture" class="btn">See architecture</a>
+          <a href="#approach" class="btn">See how it works</a>
+          <a href="mailto:gre4bt@umsystem.edu" class="btn btn-secondary">Contact me</a>
         </div>
       </div>
     </section>
 
-    <!-- HIGHLIGHTS -->
+    <!-- PROBLEM -->
     <section class="section">
-      <div class="container grid-2">
-        <div class="card" data-aos="fade-up">
-          <h3>What ACE Does</h3>
-          <ul>
-            <li>Analyzes telemetry (time, mistakes, hints, action sequences).</li>
-            <li>Estimates reward via AIRL; adjusts difficulty with PPO.</li>
-            <li>Delivers adaptive hints and pacing inside a Unity VR lab.</li>
-          </ul>
-        </div>
-        <div class="card" data-aos="fade-up" data-aos-delay="100">
-          <h3>Why It Matters</h3>
-          <ul>
-            <li>Boosts engagement and skill transfer for cyber defense tasks.</li>
-            <li>Personalizes lab flow without manual scripting.</li>
-            <li>Supports safe, explainable training through logged decisions.</li>
-          </ul>
-        </div>
+      <div class="container" style="max-width:760px;">
+        <p class="eyebrow">The Problem</p>
+        <h2>One difficulty curve doesn't fit every learner.</h2>
+        <p class="lead">
+          Most VR cybersecurity labs run every student through the same fixed sequence of challenges.
+          Advanced learners get bored and disengage; beginners get stuck without the scaffolding they need —
+          and neither group gets training that's actually calibrated to them.
+        </p>
       </div>
     </section>
 
-    <!-- ARCHITECTURE FLOW -->
-    <section id="architecture" class="section alt">
+    <!-- APPROACH -->
+    <section id="approach" class="section alt">
       <div class="container">
-        <h2>Architecture</h2>
-        <div class="card" style="overflow:auto;">
+        <p class="eyebrow">The Approach</p>
+        <h2>Reading the player, adjusting the lab in real time</h2>
+        <p class="meta" style="max-width:640px;">
+          Every action in the VR escape room is logged as telemetry. AIRL infers a reward signal from that
+          behavior, and a PPO policy uses it to decide the next difficulty level and hint strategy — closing
+          the loop back into the session live. Hover a stage below for what it does.
+        </p>
+        <div class="card" style="overflow:auto; margin-top:16px;">
           <!-- Responsive SVG flow diagram with hover tooltips -->
           <div style="min-height: 280px;">
             <svg viewBox="0 0 1000 320" width="100%" height="320" role="img" aria-label="ACE architecture flow">
@@ -136,8 +139,32 @@
             </svg>
             <div id="nodeInfo" class="node-info" aria-live="polite">
                 Hover a node to see what it does.
+            </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- WHY IT MATTERS -->
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow">Why It Matters</p>
+        <h2>Built for engagement, not just difficulty scaling</h2>
+        <div class="cards" style="margin-top:16px;">
+          <article class="card" data-aos="fade-up">
+            <h3>Boosts engagement</h3>
+            <p>Personalized pacing keeps advanced learners challenged and beginners supported, instead of losing either group to a fixed curve.</p>
+          </article>
+          <article class="card" data-aos="fade-up" data-aos-delay="100">
+            <h3>No manual scripting</h3>
+            <p>The lab reshapes itself from live gameplay telemetry — no instructor has to hand-author difficulty tiers per learner.</p>
+          </article>
+          <article class="card" data-aos="fade-up" data-aos-delay="200">
+            <h3>Explainable by design</h3>
+            <p>Every difficulty and hint decision is logged, so training stays safe, auditable, and easy to reason about after the fact.</p>
+          </article>
+        </div>
+        <p class="meta" style="margin-top:20px;">Developed as an NSF REU project at the University of Missouri–Columbia; findings presented at the NSF REU showcase.</p>
       </div>
     </section>
 

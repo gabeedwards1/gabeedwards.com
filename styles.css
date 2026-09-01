@@ -288,6 +288,41 @@ svg .node rect{ pointer-events: all; }  /* ensure nodes receive hover */
   height: 100%;
 }
 
+/* ========== Case-study narrative elements ========== */
+/* eyebrow label: marks where a page is in its Problem -> Approach -> Results sequence */
+.eyebrow {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 10px;
+}
+
+/* stat tiles: real, sourced numbers only -- big figure + short label */
+.stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20px;
+}
+.stat-row .stat { min-width: 140px; }
+.stat-row .num {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+}
+.stat-row .label {
+  color: var(--muted);
+  font-size: .9rem;
+  margin: 6px auto 0;
+  max-width: 160px;
+}
+
 /* contact card info */
 .contact-card {
   display: flex;
