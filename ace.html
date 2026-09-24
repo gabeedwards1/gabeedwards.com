@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="/styles.css" />
   <link rel="icon" type="image/png" href="/favicon.png">
   <!-- Optional: AOS for small scroll reveals (safe to remove if not used elsewhere) -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" integrity="sha384-/rJKQnzOkEo+daG0jMjU1IwwY9unxt1NBw3Ef2fmOJ3PW/TfAg2KXVoWwMZQZtw9" crossorigin="anonymous">
 </head>
 <body>
   <header class="site-header">
@@ -203,24 +203,8 @@
   </footer>
 
   <!-- libs -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
-  <script>
-    // year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // mobile menu
-    const toggle = document.querySelector('.menu-toggle');
-    const nav = document.getElementById('site-nav');
-    toggle?.addEventListener('click', () => {
-      const expanded = toggle.getAttribute('aria-expanded') === 'true' || false;
-      toggle.setAttribute('aria-expanded', String(!expanded));
-      nav.classList.toggle('open');
-    });
-
-    // AOS
-    AOS?.init && AOS.init({ once: true, duration: 600 });
-  </script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" integrity="sha384-n1AULnKdMJlK1oQCLNDL9qZsDgXtH6jRYFCpBtWFc+a9Yve0KSoMn575rk755NJZ" crossorigin="anonymous" defer></script>
+  <script src="/js/site.js" defer></script>
 
 </body>
 </html>

@@ -219,56 +219,10 @@
     </div>
   </footer>
 
-  <script>
-    // current year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // accessible mobile menu toggle
-    const toggle = document.querySelector('.menu-toggle');
-    const nav = document.getElementById('site-nav');
-
-    toggle?.addEventListener('click', () => {
-      const expanded = toggle.getAttribute('aria-expanded') === 'true' || false;
-      toggle.setAttribute('aria-expanded', String(!expanded));
-      nav.classList.toggle('open'); // style .nav.open in CSS (e.g., display:block on mobile)
-    });
-
-    // smooth scroll (optional)
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const id = a.getAttribute('href').slice(1);
-        const el = document.getElementById(id);
-        if (el) {
-          e.preventDefault();
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-  </script>
-
-<!-- 1. Load Vanta.js dependencies -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
-
-<!-- 2. Activate the animation on your hero section -->
-<script>
-VANTA.NET({
-  el: ".hero",                 // target section
-  mouseControls: true,
-  touchControls: true,
-  gyroControls: false,
-  minHeight: 200.00,
-  minWidth: 200.00,
-  scale: 1.00,
-  scaleMobile: 1.00,
-  color: 0x4b6cd4,             // softer blue (less glow) 
-  backgroundColor: 0x0f1220,   // matches your dark theme
-  points: 9.0,                 // number of dots
-  maxDistance: 22.0,           // spacing between nodes
-  spacing: 18.0
-});
-</script>
-
-
+  <!-- Vanta hero background: pinned versions + SRI so a CDN/npm compromise can't swap the code -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js" integrity="sha384-aUS0jUAjhhBFNPifgxTHTNcsZDqkbegLd/JKEhJzK3Lyg9nFF1PZ2J++mzKwd8Kz" crossorigin="anonymous" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js" integrity="sha384-L0sjdcIWJ156WmvbxIBHx79j1WrCqANCyw456nl/aPWSYiHNywEU2VIAcbSJeIiX" crossorigin="anonymous" defer></script>
+  <script src="/js/hero.js" defer></script>
+  <script src="/js/site.js" defer></script>
 </body>
 </html>

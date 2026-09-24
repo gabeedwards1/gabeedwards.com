@@ -1,0 +1,8 @@
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), accelerometer=(), gyroscope=(), magnetometer=(), browsing-topics=()
+  Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy-Report-Only: default-src 'none'; script-src 'self' https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js https://unpkg.com/aos@2.3.4/dist/aos.js; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com/aos@2.3.4/dist/aos.css; font-src https://fonts.gstatic.com; img-src 'self' https://cdn.jsdelivr.net/gh/simple-icons/; object-src 'self'; frame-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'self'
